@@ -19,7 +19,7 @@ import org.apache.commons.codec.binary.Base64;
 
 public class GitHubAPITest {
 
-    private static final String authorization = "your_PAT";
+    private static final String authorization = "Bearer your_PAT";
     private static final String baseUrl = "https://api.github.com/repos/your_username/your_repo";
 
     public static void main(final String[] args) throws IOException, InterruptedException {
