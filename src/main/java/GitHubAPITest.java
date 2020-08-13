@@ -103,12 +103,11 @@ public class GitHubAPITest {
 
     private String createFile() throws IOException, InterruptedException {
         var fileToAdd = getResourceFile("new_file.txt");
-        var byteArray = Base64.encodeBase64(fileToAdd.getBytes());
-        var encodedString = new String(byteArray);
+        var encodedContent = java.util.Base64.getEncoder().encodeToString(fileToAdd.getBytes());
 
         var createMap = Map.of(
                 "message", "New file added",
-                "content", encodedString,
+                "content", encodedContent,
                 "branch", "new-branch");
 
         var requestBody = objectMapper.writeValueAsString(createMap);
@@ -144,6 +143,6 @@ public class GitHubAPITest {
     }
 
     private String deleteBranch() throws IOException, InterruptedException {
-        return delete("/git/refs/heads/new-branch");
+        return this.delete("/git/refs/heads/new-branch");
     }
 }
